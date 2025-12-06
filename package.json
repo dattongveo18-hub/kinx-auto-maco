@@ -14,40 +14,50 @@
     "productName": "Kinx Auto",
     "files": [
       "**/*",
-      "!node_modules/.cache"
+      "!node_modules/.cache",
+      "!**/*.map"
     ],
     "directories": {
       "output": "dist",
       "buildResources": "build"
     },
+
     "mac": {
       "category": "public.app-category.developer-tools",
       "icon": "build/icon.icns",
       "target": [
         "dmg",
         "zip"
-      ]
+      ],
+      "artifactName": "Kinx-Auto-macOS-${version}.${ext}"
     },
+
     "dmg": {
-      "background": null,
+      "background": "build/dmg-background.png",
       "window": {
         "width": 540,
         "height": 380
-      }
+      },
+      "iconSize": 128
     },
+
     "win": {
+      "icon": "build/icon.ico",
       "target": [
         "nsis",
         "portable"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage"
       ],
-      "category": "Utility"
+      "artifactName": "Kinx-Auto-Windows-${version}.${ext}"
+    },
+
+    "linux": {
+      "target": ["AppImage"],
+      "icon": "build/icons/",
+      "category": "Utility",
+      "artifactName": "Kinx-Auto-Linux-${version}.${ext}"
     }
   },
+
   "dependencies": {
     "@electron/remote": "^2.1.3",
     "@google/genai": "^1.13.0",
@@ -64,6 +74,7 @@
     "react-i18next": "^16.1.0",
     "react-resizable-panels": "^3.0.6"
   },
+
   "devDependencies": {
     "electron": "^31.7.7",
     "electron-builder": "^24.13.3"

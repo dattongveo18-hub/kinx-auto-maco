@@ -1,0 +1,20 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.veosuite.app
+productName: Veo Auto
+files:
+  - filter:
+      - dist/**/*
+      - dist-electron/**/*
+win:
+  target: nsis
+  icon: build/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+publish:
+  provider: github
+  owner: nphuongthaopipo
+  repo: veocreator_done
+electronVersion: 38.1.2

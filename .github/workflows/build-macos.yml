@@ -1,7 +1,9 @@
-name: Build macOS App
+name: Build macOS
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -9,24 +11,22 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
 
-      - name: Build macOS
-        run: |
-          npm run dist
+      - name: Build macOS App
+        run: npm run dist
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload macOS artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: KinX-ai-macOS
-          path: dist/**
+          name: macos-build
+          path: dist/*

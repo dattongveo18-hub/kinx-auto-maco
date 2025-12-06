@@ -18,6 +18,14 @@
       "!**/*.map",
       "!dist/**"
     ],
+    "publish": [
+    {
+      "provider": "github",
+      "owner": "KinX-ai",
+      "repo": "os",
+      "updaterCacheDirName": "kinx-auto-updater"
+    }
+  ],
     "directories": {
       "output": "dist",
       "buildResources": "build"

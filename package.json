@@ -24,7 +24,7 @@
 
     "mac": {
       "category": "public.app-category.developer-tools",
-      "icon": "build/icon.icns",
+      "icon": "icon.icns",
       "target": [
         "dmg",
         "zip"
@@ -33,7 +33,7 @@
     },
 
     "dmg": {
-      "background": "build/dmg-background.png",
+      "background": "dmg-background.png",
       "window": {
         "width": 540,
         "height": 380

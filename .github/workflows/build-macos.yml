@@ -1,32 +1,49 @@
-name: Build macOS
+name: Build macOS App
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-macos:
     runs-on: macos-latest
+    env:
+      # tránh download Chromium trên runners (puppeteer)
+      PUPPETEER_SKIP_DOWNLOAD: "true"
+      # cho electron-builder bỏ qua 1 số dependency không bắt buộc
+      ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: "true"
+      # tránh một số download binary (tùy package)
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "true"
+      # disable code signing discovery (nếu bạn không có cert)
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
 
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Show repo files (debug)
+        run: ls -la && ls -la build || true
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: "npm"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (skip chromium download)
+        run: npm ci
+        # npm ci respects PUPPETEER_SKIP_DOWNLOAD env above
 
-      - name: Build macOS App
-        run: npm run dist
+      - name: Build macOS (electron-builder)
+        run: npx electron-builder --mac --publish=never
+        # --publish=never tránh auto publish releases (tuỳ bạn)
+
+      - name: List dist folder
+        run: ls -la dist || true
 
       - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: macos-build
-          path: dist/*
+          name: kinx-auto-macos
+          path: dist/**

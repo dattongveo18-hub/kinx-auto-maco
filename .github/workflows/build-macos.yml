@@ -2,30 +2,31 @@ name: Build macOS App
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install dependencies
+        run: |
+          npm install
 
-      - name: Build macOS App
-        run: npx electron-builder --mac
+      - name: Build macOS
+        run: |
+          npm run dist
 
-      - name: Upload macOS Build
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: macos-build
-          path: dist/
+          name: KinX-ai-macOS
+          path: dist/**

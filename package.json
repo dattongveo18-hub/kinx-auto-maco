@@ -12,6 +12,14 @@
   "build": {
     "appId": "com.kinx.auto",
     "productName": "Kinx Auto",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "KinX-ai",
+        "repo": "os", 
+        "private": false
+      }
+    ],
     "files": [
       "**/*",
       "!node_modules/.cache"
@@ -23,10 +31,7 @@
     "mac": {
       "category": "public.app-category.developer-tools",
       "icon": "build/icon.icns",
-      "target": [
-        "dmg",
-        "zip"
-      ]
+      "target": ["dmg", "zip"]
     },
     "dmg": {
       "background": null,
@@ -36,15 +41,10 @@
       }
     },
     "win": {
-      "target": [
-        "nsis",
-        "portable"
-      ]
+      "target": ["nsis", "portable"]
     },
     "linux": {
-      "target": [
-        "AppImage"
-      ],
+      "target": ["AppImage"],
       "category": "Utility"
     }
   },

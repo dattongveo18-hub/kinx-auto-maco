@@ -1,6 +1,6 @@
 {
   "name": "kinx-auto",
-  "version": "3.8.0",
+  "version": "3.8.1",
   "description": "Kinx Auto",
   "main": "main.js",
   "scripts": {

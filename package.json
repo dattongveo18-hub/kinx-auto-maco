@@ -1,6 +1,6 @@
 {
   "name": "kinx-auto",
-  "version": "3.9.8",
+  "version": "3.9.9",
   "description": "Kinx Auto",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,7 @@
       {
         "provider": "github",
         "owner": "KinX-ai",
-        "repo": "os", 
+        "repo": "os",
         "private": false
       }
     ],
@@ -31,7 +31,10 @@
     "mac": {
       "category": "public.app-category.developer-tools",
       "icon": "build/icon.icns",
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "dmg": {
       "background": null,
@@ -41,10 +44,15 @@
       }
     },
     "win": {
-      "target": ["nsis", "portable"]
+      "target": [
+        "nsis",
+        "portable"
+      ]
     },
     "linux": {
-      "target": ["AppImage"],
+      "target": [
+        "AppImage"
+      ],
       "category": "Utility"
     }
   },

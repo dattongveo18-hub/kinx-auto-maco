@@ -15,14 +15,20 @@ class RecaptchaSolver {
       this.solverWindow.destroy();
     }
 
+    const isMac = process.platform === 'darwin';
+
     this.solverWindow = new BrowserWindow({
       width: 360,
       height: 640,
-      show: true,        
-      x: -32000,         
-      y: -32000,
+      show: true,
+      x: isMac ? 0 : -32000, 
+      y: isMac ? 0 : -32000,
+      opacity: 0.0, 
+      transparent: true,
       frame: false,
       skipTaskbar: true, 
+      alwaysOnTop: false, 
+      focusable: false,   
       focusable: false,  
       webPreferences: {
         nodeIntegration: false,
